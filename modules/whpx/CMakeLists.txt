@@ -26,11 +26,16 @@
 # SOFTWARE.
 project(virt86-whpx VERSION ${CMAKE_PROJECT_VERSION} LANGUAGES CXX)
 
-if(${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION} VERSION_LESS 10.0.17134.0)
-    message(WARNING "WHPX requires Windows SDK version 10.0.17134.0 or later. virt86-whpx will not be available.")
-    message(STATUS "CMake reports Windows target platform version ${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}.")
-    return()
-endif()
+
+#message("@@@@@@@@@@@@@ CMAKE_VS_PLATFORM_NAME \"${CMAKE_VS_PLATFORM_NAME}\"")
+#message("@@@@@@@@@@@@@ CMAKE_VS_PLATFORM_TOOLSET \"${CMAKE_VS_PLATFORM_TOOLSET}\"")
+#message("@@@@@@@@@@@@@ CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION \"${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}\"")
+
+#if(${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION} VERSION_LESS 10.0.17134.0)
+#    message(WARNING "WHPX requires Windows SDK version 10.0.17134.0 or later. virt86-whpx will not be available.")
+#    message(STATUS "CMake reports Windows target platform version ${CMAKE_VS_WINDOWS_TARGET_PLATFORM_VERSION}.")
+#    return()
+#endif()
 
 ##############################
 # Source files
@@ -82,7 +87,9 @@ target_include_directories(virt86-whpx
 
 # Configure MSVC and precompiled header
 if(MSVC)
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_precompiled_header(virt86-whpx pch.hpp SOURCE_CXX "${CMAKE_CURRENT_SOURCE_DIR}/src/pch.cpp" FORCEINCLUDE)
+  endif()
 
     vs_set_filters(BASE_DIR src FILTER_ROOT "Sources" SOURCES ${sources})
     vs_set_filters(BASE_DIR src FILTER_ROOT "Private Headers" SOURCES ${private_headers})

@@ -108,7 +108,9 @@ target_include_directories(virt86-haxm
 
 # Configure MSVC and precompiled header
 if(MSVC)
+  if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     add_precompiled_header(virt86-haxm pch.hpp SOURCE_CXX "${CMAKE_CURRENT_SOURCE_DIR}/src/common/pch.cpp" FORCEINCLUDE)
+  endif()
 
     vs_set_filters(BASE_DIR src FILTER_ROOT "Sources" SOURCES ${sources})
     vs_set_filters(BASE_DIR src FILTER_ROOT "Private Headers" SOURCES ${private_headers})

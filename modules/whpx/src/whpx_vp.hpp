@@ -27,6 +27,7 @@ SOFTWARE.
 #pragma once
 
 #include "virt86/vp/vp.hpp"
+#include "whpx_dispatch.hpp"
 
 #include <Windows.h>
 #include <WinHvPlatform.h>

@@ -26,6 +26,7 @@ SOFTWARE.
 */
 #include "whpx_regs.hpp"
 #include "whpx_defs.hpp"
+#include "whpx_dispatch.hpp"
 
 #include "virt86/util/bytemanip.hpp"
 
